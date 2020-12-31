@@ -18,24 +18,21 @@ class FirstFragment : Fragment() {
         val adapter = ExampleAdapter(generateDummyList(500))
         view.recyclerView.adapter = adapter
         view.recyclerView.layoutManager = LinearLayoutManager(context)
-
         return view
     }
-
 //    val exampleList = generateDummyList(500)
 //    recycler_view.adapter = ExampleAdapter(exampleList)
 //    recycler_view.layoutManager = LinearLayoutManager(this)
 //    recycler_view.setHasFixedSize(true)
-
-    private fun generateDummyList(size: Int): List<ExampleItem> {
-        val list = ArrayList<ExampleItem>()
+    private fun generateDummyList(size: Int): List<ContactItem> {
+        val list = ArrayList<ContactItem>()
         for (i in 0 until size) {
             val drawable = when (i % 3) {
                 0 -> R.drawable.ic_android_head
                 1 -> R.drawable.ic_flower
                 else -> R.drawable.ic_face
             }
-            val item = ExampleItem(drawable, "Item $i", "010-$i$i$i$i-$i$i$i$i")
+            val item = ContactItem(drawable, "Item $i", "010-$i$i$i$i-$i$i$i$i")
             list += item
         }
         return list
