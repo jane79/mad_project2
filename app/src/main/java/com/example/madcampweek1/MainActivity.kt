@@ -13,7 +13,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
 
         val adapter = FragmentAdapter(this)
-        val fragments = listOf<Fragment>(FirstFragment(), SecondFragment(), ThirdFragment())
+        val fragments = listOf<Fragment>(ContactsFragment(), GalleryFragment(), ThirdFragment())
         val tabTitles = listOf<String>("Contacts", "Gallery", "Game")
         adapter.fragments.addAll(fragments)
         viewPager.adapter = adapter

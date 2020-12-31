@@ -8,22 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.contact_item.view.*
 
-class ExampleAdapter(private val contactList: List<ContactItem>) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
-
+class ContactsAdapter(private val contactList: List<ContactItem>) : RecyclerView.Adapter<ContactsAdapter.ExampleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.contact_item,
             parent, false)
-
         return ExampleViewHolder(itemView)
     }
-
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val currentItem = contactList[position]
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textView1.text = currentItem.text1
         holder.textView2.text = currentItem.text2
     }
-
     override fun getItemCount() = contactList.size
 
     class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
