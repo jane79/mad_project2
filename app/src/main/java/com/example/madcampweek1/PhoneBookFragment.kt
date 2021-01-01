@@ -1,12 +1,16 @@
 package com.example.madcampweek1
 
+import android.Manifest
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_phone_book.*
 import kotlinx.android.synthetic.main.fragment_phone_book.view.*
 
 class PhoneBookFragment : Fragment() {
@@ -23,15 +27,56 @@ class PhoneBookFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_phone_book, container, false)
         setContentView(view)
+        setSearchListener(view)
+        setRadioListener(view)
         return view
     }
 
-    fun setContentView(view: View){
+    private fun setContentView(view: View){
         phonelist.addAll(getPhoneNumbers(sortText, searchText))
         mAadapter = PhoneAdapter(phonelist)
         view.recycler.adapter = mAadapter
         view.recycler.layoutManager = LinearLayoutManager(context)
     }
+
+
+    fun setSearchListener(view: View) {
+        view.editSearch.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchText = s.toString()
+                changeList()
+            }
+        })
+    }
+
+    fun setRadioListener(view: View) {
+        view.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                R.id.radioAsc -> sortText = "asc"
+                R.id.radioDsc -> sortText = "desc"
+            }
+            changeList()
+        }
+    }
+
+    fun changeList() {
+        val newList = getPhoneNumbers(sortText, searchText)
+        this.phonelist.clear()
+        this.phonelist.addAll(newList)
+        this.mAadapter.notifyDataSetChanged()
+    }
+
+
+
+
+
+
+
+
+
 
     fun getPhoneNumbers(sort:String, searchName:String?) : List<Phone> {
         // 결과목록 미리 정의
