@@ -44,7 +44,7 @@ class MainActivity : FragmentActivity() {
     }
 
     // 권한처리 코드
-    fun checkAndStart() {
+    private fun checkAndStart() {
         if( isLower23() || isPermitted()) {
             startProcess()
         } else {
@@ -52,7 +52,7 @@ class MainActivity : FragmentActivity() {
         }
     }
 
-    fun isLower23() : Boolean{
+    private fun isLower23() : Boolean{
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
     }
 

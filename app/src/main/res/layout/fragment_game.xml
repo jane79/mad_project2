@@ -17,15 +17,17 @@
             android:id="@+id/text_view_p1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 1: 0"
-            android:textSize="30sp"/>
+            android:text="User: 0"
+            android:layout_marginLeft="15dp"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/text_view_p2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_p1"
-            android:text="Player 2: 0"
+            android:text="Computer: 0"
+            android:layout_marginLeft="15dp"
             android:textSize="30sp"/>
 
         <Button
@@ -33,8 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="33dp"
+            android:backgroundTint="#d2ac2d"
             android:text="reset"
             android:layout_marginRight="33dp"
             android:layout_alignParentRight="true" />

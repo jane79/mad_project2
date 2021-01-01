@@ -40,7 +40,7 @@ class PhoneBookFragment : Fragment() {
     }
 
 
-    fun setSearchListener(view: View) {
+    private fun setSearchListener(view: View) {
         view.editSearch.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -52,7 +52,7 @@ class PhoneBookFragment : Fragment() {
         })
     }
 
-    fun setRadioListener(view: View) {
+    private fun setRadioListener(view: View) {
         view.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId) {
                 R.id.radioAsc -> sortText = "asc"

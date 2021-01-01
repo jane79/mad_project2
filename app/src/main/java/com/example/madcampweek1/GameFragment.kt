@@ -72,8 +72,8 @@ class GameFragment : Fragment() {
             resetBoard(view)
             player2point = 0
             player1point = 0
-            view.text_view_p1.setText("Player 1: " + player1point)
-            view.text_view_p2.setText("Player 2: " + player2point)
+            view.text_view_p1.setText("User: " + player1point)
+            view.text_view_p2.setText("Computer: " + player2point)
         }
 
 

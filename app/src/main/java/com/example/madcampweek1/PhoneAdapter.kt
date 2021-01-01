@@ -2,7 +2,9 @@ package com.example.madcampweek1
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +46,18 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun setPhone(phone:Phone) {
         this.mPhone = phone
+        var num = 0
+        try {
+            num = Character.getNumericValue(phone.phone.toString().last())
+        } catch (nfe: NumberFormatException) {
+            // not a valid int
+        }
+
+        when(num%3) {
+            0 -> itemView.image_view.setColorFilter(Color.parseColor("#db6f48"))
+            1 -> itemView.image_view.setColorFilter(Color.parseColor("#d8db48"))
+            else -> itemView.image_view.setColorFilter(Color.parseColor("#48d5cc"))
+        }
         itemView.textName.text = phone.name
         itemView.textPhone.text = phone.phone
     }
