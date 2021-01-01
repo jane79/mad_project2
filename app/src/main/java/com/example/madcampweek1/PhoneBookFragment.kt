@@ -70,14 +70,6 @@ class PhoneBookFragment : Fragment() {
     }
 
 
-
-
-
-
-
-
-
-
     fun getPhoneNumbers(sort:String, searchName:String?) : List<Phone> {
         // 결과목록 미리 정의
         val list = mutableListOf<Phone>()

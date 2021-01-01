@@ -20,7 +20,7 @@ class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
         checkAndStart()
 
     }
@@ -38,7 +38,7 @@ class MainActivity : FragmentActivity() {
 
     fun setAdapter() {
         val adapter = FragmentAdapter(this)
-        val fragments = listOf<Fragment>(PhoneBookFragment(), GalleryFragment(), ThirdFragment())
+        val fragments = listOf<Fragment>(PhoneBookFragment(), GalleryFragment(), GameFragment())
         adapter.fragments.addAll(fragments)
         viewPager.adapter = adapter
     }
