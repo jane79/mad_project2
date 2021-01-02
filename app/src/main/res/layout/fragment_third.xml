@@ -5,12 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".ThirdFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="THIRD"
         android:textSize="50dp" />
+
+    <Button
+        android:id="@+id/btn_open_new_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OPEN" />
 
 </FrameLayout>
