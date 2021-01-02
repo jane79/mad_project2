@@ -1,6 +1,5 @@
-package com.example.madcampweek1
+package com.example.madcampweek1.firstTab
 
-import android.Manifest
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.Editable
@@ -10,12 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_phone_book.*
+import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.fragment_phone_book.view.*
 
 class PhoneBookFragment : Fragment() {
 
-    lateinit var mAadapter:PhoneAdapter
+    lateinit var mAadapter: PhoneAdapter
     var phonelist = mutableListOf<Phone>()
     var searchText = ""
     var sortText = "asc"

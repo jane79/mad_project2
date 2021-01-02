@@ -1,27 +1,23 @@
-package com.example.madcampweek1
+package com.example.madcampweek1.secondTab
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.gallery_item.view.*
-import java.io.ByteArrayOutputStream
 
 class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryAdapter.GalleryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.gallery_item,
             parent, false
         )
-        return GalleryAdapter.GalleryViewHolder(itemView)
+        return GalleryViewHolder(itemView)
     }
-    override fun onBindViewHolder(holder: GalleryAdapter.GalleryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val currentItem = galleryList[position]
 
         val listener = View.OnClickListener { it ->

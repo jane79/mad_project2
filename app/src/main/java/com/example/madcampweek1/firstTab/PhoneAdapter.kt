@@ -1,14 +1,14 @@
-package com.example.madcampweek1
+package com.example.madcampweek1.firstTab
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.contact_item.view.*
 
 data class Phone(val id:String?, val name:String?, val phone:String?)
@@ -33,7 +33,7 @@ class PhoneAdapter(val list:List<Phone>) : RecyclerView.Adapter<Holder>() {
 
 @SuppressLint("MissingPermission")
 class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var mPhone:Phone? = null
+    var mPhone: Phone? = null
     init {
         itemView.btnPhone.setOnClickListener {
             mPhone?.phone.let { phoneNumber ->
@@ -43,7 +43,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
         }
     }
-    fun setPhone(phone:Phone) {
+    fun setPhone(phone: Phone) {
         this.mPhone = phone
         var num = 0
         try {

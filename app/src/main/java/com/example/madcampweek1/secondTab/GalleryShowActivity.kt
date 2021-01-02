@@ -1,8 +1,9 @@
-package com.example.madcampweek1
+package com.example.madcampweek1.secondTab
 
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.activity_gallery_show.*
 
 class GalleryShowActivity : AppCompatActivity() {

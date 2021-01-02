@@ -10,6 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.madcampweek1.firstTab.PhoneBookFragment
+import com.example.madcampweek1.secondTab.GalleryFragment
+import com.example.madcampweek1.thirdTab.GameFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -1,4 +1,4 @@
-package com.example.madcampweek1
+package com.example.madcampweek1.secondTab
 
 import android.graphics.drawable.Drawable
 import android.os.Parcel
