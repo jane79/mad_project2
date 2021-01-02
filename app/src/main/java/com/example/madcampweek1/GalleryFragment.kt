@@ -35,7 +35,6 @@ class GalleryFragment : Fragment() {
         val adapter = GalleryAdapter(generateDummyImage(20))
         view.gallery_recycler_view.adapter = adapter
 
-
         return view
     }
     private fun generateDummyImage(size: Int): ArrayList<GalleryItem> {
@@ -56,7 +55,7 @@ class GalleryFragment : Fragment() {
         }
         return list
     }
-
+// 카메라 버튼 시도
 //    fun isPermitted(permissions: Array<String>) : Boolean {
 //        for(permission in permissions){
 ////            val result = ContextCompat.checkSelfPermission(this, permission)

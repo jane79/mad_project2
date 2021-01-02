@@ -35,7 +35,6 @@ class MainActivity : FragmentActivity() {
         }.attach()
     }
 
-
     fun setAdapter() {
         val adapter = FragmentAdapter(this)
         val fragments = listOf<Fragment>(PhoneBookFragment(), GalleryFragment(), GameFragment())
@@ -66,7 +65,6 @@ class MainActivity : FragmentActivity() {
         return true
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -87,8 +85,6 @@ class MainActivity : FragmentActivity() {
             }
         }
     }
-
-
 }
 class FragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     val fragments = mutableListOf<Fragment>()

@@ -29,9 +29,6 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
             Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(it.context, GalleryShowActivity::class.java)
-//            intent.putExtra("OBJECT_INTENT", it)
-//            intent.putExtra("Drawable", currentItem.imageResource.toString())
-//            intent.putExtra("Drawable", it.toString())
             intent.putExtra("Drawable", currentItem.imageResource)
             it.context.startActivity(intent)
         }

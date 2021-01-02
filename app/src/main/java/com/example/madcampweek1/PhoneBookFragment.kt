@@ -20,7 +20,6 @@ class PhoneBookFragment : Fragment() {
     var searchText = ""
     var sortText = "asc"
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +37,6 @@ class PhoneBookFragment : Fragment() {
         view.recycler.adapter = mAadapter
         view.recycler.layoutManager = LinearLayoutManager(context)
     }
-
 
     private fun setSearchListener(view: View) {
         view.editSearch.addTextChangedListener(object: TextWatcher {
@@ -68,7 +66,6 @@ class PhoneBookFragment : Fragment() {
         this.phonelist.addAll(newList)
         this.mAadapter.notifyDataSetChanged()
     }
-
 
     fun getPhoneNumbers(sort:String, searchName:String?) : List<Phone> {
         // 결과목록 미리 정의
@@ -105,7 +102,6 @@ class PhoneBookFragment : Fragment() {
                 list.add(phone)
             }
         }
-
         // 결과목록 반환
         return list
     }

@@ -6,7 +6,7 @@ import android.os.Parcelable
 
 data class GalleryItem(val imageResource: Int, val title: String) {
 }
-
+//카메라 버튼 시도
 //data class GalleryItem(val imageResource: Drawable, val title: String) : Parcelable {
 //    constructor(parcel: Parcel) : this(
 //        TODO("imageResource"),

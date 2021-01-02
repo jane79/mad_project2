@@ -43,7 +43,6 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
         }
     }
-
     fun setPhone(phone:Phone) {
         this.mPhone = phone
         var num = 0
@@ -61,7 +60,4 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.textName.text = phone.name
         itemView.textPhone.text = phone.phone
     }
-
-
-
 }

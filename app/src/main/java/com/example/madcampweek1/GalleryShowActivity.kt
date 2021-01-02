@@ -16,10 +16,5 @@ class GalleryShowActivity : AppCompatActivity() {
             val drawable = bundle.getInt("Drawable")
             gallery_show.setImageResource(drawable)
         }
-//
-////        val adapter = GalleryAdapter(this)
-////        viewPager.adapter = adapter
-
-
     }
 }
