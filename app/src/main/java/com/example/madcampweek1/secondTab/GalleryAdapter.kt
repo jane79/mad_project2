@@ -11,10 +11,8 @@ import kotlinx.android.synthetic.main.gallery_item.view.*
 
 class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.gallery_item,
-            parent, false
-        )
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.gallery_item,
+            parent, false)
         return GalleryViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {

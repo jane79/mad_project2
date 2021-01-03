@@ -12,10 +12,11 @@ class GalleryShowActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gallery_show)
 
         val gallery_show: ImageView = gallery_show
+
         val bundle: Bundle = intent.extras!!
-        if (bundle != null) {
-            val drawable = bundle.getInt("Drawable")
-            gallery_show.setImageResource(drawable)
-        }
+
+        val drawable = bundle.getInt("Drawable")
+
+        gallery_show.setImageResource(drawable)
     }
 }

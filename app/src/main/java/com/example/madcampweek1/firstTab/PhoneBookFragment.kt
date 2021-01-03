@@ -94,7 +94,7 @@ class PhoneBookFragment : Fragment() {
             while(cursor?.moveToNext()?:false) {
                 val id = cursor?.getString(0)
                 val name = cursor?.getString(1)
-                var number = cursor?.getString(2)
+                val number = cursor?.getString(2)
                 // 개별 전화번호 데이터 생성
                 val phone = Phone(id, name, number)
                 // 결과목록에 더하기
