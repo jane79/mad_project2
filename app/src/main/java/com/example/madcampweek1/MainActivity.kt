@@ -18,15 +18,15 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
-    // 권한처리는 MainActivity에서 한다
+//    첫번째탭 관련 권한처리
     val READ_CONTACTS = Manifest.permission.READ_CONTACTS
     val CALL_PHONE = Manifest.permission.CALL_PHONE
-//    val CAMERA_PERMISSION = Manifest.permission.CAMERA
-//    val READ_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
-//    val WRITE_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
+//    두번째탭 관련 권한처리
+    val CAMERA_PERMISSION = Manifest.permission.CAMERA
+    val READ_STORAGE_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
+    val WRITE_STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
-//    private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE, CAMERA_PERMISSION, READ_STORAGE, WRITE_STORAGE)
-    private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE)
+    private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE, CAMERA_PERMISSION, READ_STORAGE_PERMISSION, WRITE_STORAGE_PERMISSION)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -86,6 +86,7 @@ class MainActivity : FragmentActivity() {
                 startProcess()
             } else {
                 Toast.makeText(this, "권한 승인을 하셔야지만 앱을 사용할 수 있습니다.", Toast.LENGTH_LONG).show()
+//                ActivityCompat.requestPermissions(this, permissions, 99)
                 finish()
             }
         }
