@@ -2,6 +2,8 @@ package com.example.madcampweek1.thirdTab
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -76,30 +78,41 @@ class GameFragment : Fragment() {
             view.text_view_p2.setText("Computer: " + player2point)
         }
 
-
         return view
     }
 
 
     private fun playGame(cellID: Int, buSelected: Button, view: View) {
 
-        if(activeplayer == 1) {
+        if (activeplayer == 1) {
             buSelected.text = "X"
             buSelected.setBackgroundColor(Color.parseColor("#009193"))
             player1.add(cellID)
             activeplayer = 2
+
+            buSelected.isEnabled = false
+            roundCount++
+            checkWinner(view)
+
         } else {
+
             buSelected.text = "O"
             buSelected.setBackgroundColor(Color.parseColor("#FF9300"))
             player2.add(cellID)
             activeplayer = 1
+
+            buSelected.isEnabled = false
+            roundCount++
+            checkWinner(view)
+
         }
-
-        buSelected.isEnabled = false
-        roundCount++
-        checkWinner(view)
-
-        if(activeplayer == 2) {
+//        val handler = Handler(Looper.getMainLooper())
+//        handler.postDelayed({
+//            if (activeplayer == 2) {
+//                AutoPlay(view)
+//            }
+//        }, 1000)
+        if (activeplayer == 2) {
             AutoPlay(view)
         }
 
@@ -107,6 +120,7 @@ class GameFragment : Fragment() {
 
 
     private fun checkWinner(view: View) {
+
         var winner = -1
         //rows
         if(player1.contains(1) && player1.contains(2) && player1.contains(3)) {
@@ -148,8 +162,8 @@ class GameFragment : Fragment() {
             winner = 2
         }
 
-
         if(winner != -1) {
+
             if(winner == 1) {
                 player1point++
                 Toast.makeText(activity, "Player 1 won the game.", Toast.LENGTH_LONG).show()
@@ -165,20 +179,17 @@ class GameFragment : Fragment() {
             Toast.makeText(activity, "Draw game.", Toast.LENGTH_LONG).show()
             resetBoard(view)
         }
-
-
     }
 
     private fun updatePointsText(winner : Int, view: View) {
         if(winner == 1) {
-            view.text_view_p1.setText("Player 1: " + player1point)
+            view.text_view_p1.setText("User: " + player1point)
         } else {
-            view.text_view_p2.setText("Player 2: " + player2point)
+            view.text_view_p2.setText("Computer: " + player2point)
         }
     }
 
     private fun resetBoard(view: View) {
-
         view.button_00.setText("")
         view.button_00.setBackgroundColor(Color.parseColor("#676262"))
         view.button_00.isEnabled = true
@@ -227,7 +238,6 @@ class GameFragment : Fragment() {
 
         val buSelected:Button
         when(cellID) {
-
             1 -> buSelected = view.button_00
             2 -> buSelected = view.button_01
             3 -> buSelected = view.button_02
@@ -238,10 +248,11 @@ class GameFragment : Fragment() {
             8 -> buSelected = view.button_21
             9 -> buSelected = view.button_22
             else -> buSelected = view.button_00
-
         }
-        playGame(cellID, buSelected, view)
-
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            playGame(cellID, buSelected, view)
+        }, 1000)
     }
 
 
