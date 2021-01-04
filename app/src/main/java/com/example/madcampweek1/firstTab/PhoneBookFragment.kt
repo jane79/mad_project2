@@ -29,14 +29,12 @@ class PhoneBookFragment : Fragment() {
         setRadioListener(view)
         return view
     }
-
     private fun setContentView(view: View){
         phonelist.addAll(getPhoneNumbers(sortText, searchText))
         mAadapter = PhoneAdapter(phonelist)
         view.recycler.adapter = mAadapter
         view.recycler.layoutManager = LinearLayoutManager(context)
     }
-
     private fun setSearchListener(view: View) {
         view.editSearch.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {}

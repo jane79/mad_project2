@@ -11,13 +11,6 @@ import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.fragment_gallery.view.*
 
 class GalleryFragment : Fragment() {
-
-//    val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-//    val STORAGE_PERMISSION = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//    val FLAG_PERM_CAMERA = 98
-//    val FLAG_PERM_STORAGE = 99
-//    val FLAG_REQ_CAMERA = 101
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,53 +40,4 @@ class GalleryFragment : Fragment() {
         }
         return list
     }
-// 카메라 버튼 시도
-//    fun isPermitted(permissions: Array<String>) : Boolean {
-//        for(permission in permissions){
-////            val result = ContextCompat.checkSelfPermission(this, permission)
-//            val result = activity?.let { ContextCompat.checkSelfPermission(it, permission) }
-//            if(result != PackageManager.PERMISSION_GRANTED) {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-//
-//    fun openCamera() {
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        startActivityForResult(intent, FLAG_REQ_CAMERA)
-//    }
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == Activity.RESULT_OK) {
-//            when(requestCode){
-//                FLAG_REQ_CAMERA -> {
-//                    val bitmap = data?.extras?.get("data") as Bitmap
-//                    imagePreview.setImageBitmap(bitmap)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        when(requestCode){
-//            FLAG_PERM_STORAGE -> {
-//                var checked = true
-//                for (grant in grantResults){
-//                    if(grant != PackageManager.PERMISSION_GRANTED) {
-//                        checked = false
-//                        break
-//                    }
-//                }
-//                if(checked) {
-//                    openCamera()
-//                }
-//            }
-//        }
-//    }
 }
