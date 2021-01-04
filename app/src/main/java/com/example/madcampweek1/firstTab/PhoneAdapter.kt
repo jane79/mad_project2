@@ -29,7 +29,21 @@ class PhoneAdapter(private val list: List<Phone>) : RecyclerView.Adapter<PhoneAd
             val intent = Intent(it.context, PhoneBookShowActivity::class.java)
 
             intent.putExtra("ProfileImage", R.drawable.ic_human)
-            intent.putExtra("ColorFilter", "#db6f48")
+//          여기서 잠깐 프로필사진에 컬러필터 뭐 씌울지 저장
+            var num = 0
+            var colorFilter = "";
+            try {
+                num = Character.getNumericValue(phone.phone.toString().last())
+            } catch (nfe: NumberFormatException) {
+                // not a valid int
+            }
+            colorFilter = when(num % 3) {
+                0 -> "#db6f48"
+                1 -> "#d8db48"
+                else -> "#48d5cc"
+            }
+//
+            intent.putExtra("ColorFilter", colorFilter)
             intent.putExtra("Name", phone.name)
             intent.putExtra("PhoneNumber", phone.phone)
 
