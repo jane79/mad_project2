@@ -1,6 +1,5 @@
 package com.example.madcampweek1.secondTab
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,8 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
@@ -23,9 +20,6 @@ import kotlinx.android.synthetic.main.fragment_gallery.view.*
 import java.text.SimpleDateFormat
 
 class GalleryFragment : Fragment() {
-    val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-    val STORAGE_PERMISSION = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
     val FLAG_PERM_CAMERA = 98
     val FLAG_PERM_STORAGE = 99
     val FLAG_REQ_CAMERA = 101
@@ -40,20 +34,8 @@ class GalleryFragment : Fragment() {
         val adapter = GalleryAdapter(generateDummyImage(20))
         view.gallery_recycler_view.adapter = adapter
 
-        view.btnTakePhoto.setOnClickListener { it ->
-            if(isPermitted(CAMERA_PERMISSION)){
-                openCamera()
-            } else {
-                ActivityCompat.requestPermissions(it.context as Activity, CAMERA_PERMISSION, FLAG_PERM_CAMERA)
-            }
-        }
-        view.btnChoosePhoto.setOnClickListener { it ->
-            if(isPermitted(STORAGE_PERMISSION)){
-                openGallery()
-            } else {
-                ActivityCompat.requestPermissions(it.context as Activity, STORAGE_PERMISSION, FLAG_PERM_STORAGE)
-            }
-        }
+        view.btnTakePhoto.setOnClickListener { openCamera() }
+        view.btnChoosePhoto.setOnClickListener { openGallery() }
         return view
     }
     private fun openCamera() {
@@ -95,15 +77,6 @@ class GalleryFragment : Fragment() {
             }
         }
     }
-    private fun isPermitted(permissions: Array<String>) : Boolean {
-        for(perm in permissions){
-            val result = ContextCompat.checkSelfPermission(activity!!, perm)
-            if(result != PackageManager.PERMISSION_GRANTED){
-                return false
-            }
-        }
-        return true
-    }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -119,9 +92,7 @@ class GalleryFragment : Fragment() {
                         break
                     }
                 }
-                if (checked) {
-                    openCamera()
-                }
+                if (checked) { openCamera() }
             }
             FLAG_PERM_STORAGE -> {
                 var checked = true
@@ -131,9 +102,7 @@ class GalleryFragment : Fragment() {
                         break
                     }
                 }
-                if (checked) {
-                    openGallery()
-                }
+                if (checked) { openGallery() }
             }
         }
     }
