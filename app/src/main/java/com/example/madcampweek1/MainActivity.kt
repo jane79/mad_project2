@@ -86,7 +86,6 @@ class MainActivity : FragmentActivity() {
                 startProcess()
             } else {
                 Toast.makeText(this, "권한 승인을 하셔야지만 앱을 사용할 수 있습니다.", Toast.LENGTH_LONG).show()
-//                ActivityCompat.requestPermissions(this, permissions, 99)
                 finish()
             }
         }

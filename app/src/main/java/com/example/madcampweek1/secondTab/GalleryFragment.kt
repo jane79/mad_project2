@@ -40,19 +40,18 @@ class GalleryFragment : Fragment() {
         val adapter = GalleryAdapter(generateDummyImage(20))
         view.gallery_recycler_view.adapter = adapter
 
-        view.btnTakePhoto.setOnClickListener {
+        view.btnTakePhoto.setOnClickListener { it ->
             if(isPermitted(CAMERA_PERMISSION)){
                 openCamera()
             } else {
-                ActivityCompat.requestPermissions(activity!!, CAMERA_PERMISSION, FLAG_PERM_CAMERA)
+                ActivityCompat.requestPermissions(it.context as Activity, CAMERA_PERMISSION, FLAG_PERM_CAMERA)
             }
         }
-
-        view.btnChoosePhoto.setOnClickListener {
+        view.btnChoosePhoto.setOnClickListener { it ->
             if(isPermitted(STORAGE_PERMISSION)){
                 openGallery()
             } else {
-                ActivityCompat.requestPermissions(activity!!, STORAGE_PERMISSION, FLAG_PERM_STORAGE)
+                ActivityCompat.requestPermissions(it.context as Activity, STORAGE_PERMISSION, FLAG_PERM_STORAGE)
             }
         }
         return view
@@ -66,63 +65,9 @@ class GalleryFragment : Fragment() {
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
         startActivityForResult(intent, FLAG_REQ_GALLERY)
     }
-//    fun saveImageFile(fileName: String, mimeType: String, bitmap: Bitmap) : Uri?{
-//        val values = ContentValues()
-//        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
-//        values.put(MediaStore.Images.Media.MIME_TYPE, mimeType)
-//
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            values.put(MediaStore.Images.Media.IS_PENDING, 1)
-//        }
-//
-//        val uri = activity!!.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-//
-//        try{
-//            if(uri != null){
-//                var descriptor = activity!!.contentResolver.openFileDescriptor(uri, "w")
-//                if (descriptor != null){
-//                    val fos = FileOutputStream(descriptor.fileDescriptor)
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-//                    fos.close()
-//                    Toast.makeText(activity!!, "uri: $uri", Toast.LENGTH_LONG).show()
-//                    return uri
-//                }
-//            }
-//        } catch(e:Exception){
-//            Log.e("Camera", e.localizedMessage)
-//        }
-//        Toast.makeText(activity!!, "uri: null", Toast.LENGTH_SHORT).show()
-//        return null
-//    }
     fun saveImageFile(bitmap: Bitmap, title:String) : Uri? {
         val savedImageURL = MediaStore.Images.Media.insertImage(activity!!.contentResolver, bitmap, title, "image of $title")
         return Uri.parse(savedImageURL)
-//        val values = ContentValues()
-//        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
-//        values.put(MediaStore.Images.Media.MIME_TYPE, mimeType)
-//
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            values.put(MediaStore.Images.Media.IS_PENDING, 1)
-//        }
-//
-//        val uri = activity!!.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-//
-//        try{
-//            if(uri != null){
-//                var descriptor = activity!!.contentResolver.openFileDescriptor(uri, "w")
-//                if (descriptor != null){
-//                    val fos = FileOutputStream(descriptor.fileDescriptor)
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-//                    fos.close()
-//                    Toast.makeText(activity!!, "uri: $uri", Toast.LENGTH_LONG).show()
-//                    return uri
-//                }
-//            }
-//        } catch(e:Exception){
-//            Log.e("Camera", e.localizedMessage)
-//        }
-//        Toast.makeText(activity!!, "uri: null", Toast.LENGTH_SHORT).show()
-//        return null
     }
     fun newFileName() : String {
         val sdf = SimpleDateFormat("yyyyMMdd_HHmmss")
@@ -178,9 +123,20 @@ class GalleryFragment : Fragment() {
                     openCamera()
                 }
             }
+            FLAG_PERM_STORAGE -> {
+                var checked = true
+                for (grant in grantResults) {
+                    if (grant != PackageManager.PERMISSION_GRANTED) {
+                        checked = false
+                        break
+                    }
+                }
+                if (checked) {
+                    openGallery()
+                }
+            }
         }
     }
-
 
     private fun generateDummyImage(size: Int): ArrayList<GalleryItem> {
         val list = ArrayList<GalleryItem>()
