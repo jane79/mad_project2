@@ -25,7 +25,7 @@
     android:textAlignment="center"
     android:gravity="center_horizontal"
     android:textStyle="bold"
-    android:textColor="@color/black" />
+    android:textColor="@color/midnight_blue" />
 
     <TextView
     android:id="@+id/phone_show_phone_number"
@@ -37,7 +37,7 @@
     android:textAlignment="center"
     android:gravity="center_horizontal"
     android:layout_marginTop="5dp"
-    android:textColor="@color/cardview_dark_background" />
+    android:textColor="@color/wet_asphalt" />
 
     <ImageButton
     android:id="@+id/phone_show_phone_btn"

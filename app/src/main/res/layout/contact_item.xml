@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="홍길동"
             android:layout_toEndOf="@id/image_view"
-            android:textColor="@color/black"
+            android:textColor="@color/midnight_blue"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_toRightOf="@id/image_view" />

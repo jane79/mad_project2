@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/my_btn"
-            android:textColor="@color/white"
+            android:textColor="@color/midnight_blue"
             android:text="사진 찍기"/>
 
         <Button
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/my_btn"
-            android:textColor="@color/white"
+            android:textColor="@color/midnight_blue"
             android:text="앨범에서 찾기" />
 
     </LinearLayout>
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/cardview_shadow_start_color">
+        android:background="#FFE263">
 
         <ImageView
             android:id="@+id/imagePreview"

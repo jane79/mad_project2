@@ -19,11 +19,8 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val currentItem = galleryList[position]
         val listener = View.OnClickListener { it ->
-            Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(it.context, GalleryShowActivity::class.java)
             intent.putExtra("Drawable", currentItem.imageResource)
-
             it.context.startActivity(intent)
         }
         holder.apply {

@@ -25,7 +25,6 @@ class PhoneAdapter(private val list: List<Phone>) : RecyclerView.Adapter<PhoneAd
         val phone = list[position]
 
         val listener = View.OnClickListener { it ->
-            Toast.makeText(it.context, "clicked: ${phone.name}, ${phone.phone}", Toast.LENGTH_SHORT).show()
             val intent = Intent(it.context, PhoneBookShowActivity::class.java)
             intent.putExtra("ProfileImage", R.drawable.ic_human)
 //          여기서 잠깐 프로필사진에 컬러필터 뭐 씌울지 저장
@@ -37,9 +36,9 @@ class PhoneAdapter(private val list: List<Phone>) : RecyclerView.Adapter<PhoneAd
                 // not a valid int
             }
             colorFilter = when(num % 3) {
-                0 -> "#db6f48"
-                1 -> "#d8db48"
-                else -> "#48d5cc"
+                0 -> "#F1C400"
+                1 -> "#F59D00"
+                else -> "#92CDED"
             }
 //
             intent.putExtra("ColorFilter", colorFilter)
@@ -77,9 +76,9 @@ class PhoneAdapter(private val list: List<Phone>) : RecyclerView.Adapter<PhoneAd
                 // not a valid int
             }
             when(num % 3) {
-                0 -> itemView.image_view.setColorFilter(Color.parseColor("#db6f48"))
-                1 -> itemView.image_view.setColorFilter(Color.parseColor("#d8db48"))
-                else -> itemView.image_view.setColorFilter(Color.parseColor("#48d5cc"))
+                0 -> itemView.image_view.setColorFilter(Color.parseColor("#F1C400")) //sunflower
+                1 -> itemView.image_view.setColorFilter(Color.parseColor("#F59D00")) //orange
+                else -> itemView.image_view.setColorFilter(Color.parseColor("#92CDED")) //sky_blue
             }
             itemView.textName.text = phone.name
             itemView.textPhone.text = phone.phone

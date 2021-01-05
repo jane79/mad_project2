@@ -28,7 +28,7 @@ class GalleryShowAdapter(private val galleryShowList: ArrayList<GalleryItem>) : 
 
 //        holder.setItem(currentItem)
         val listener = View.OnClickListener { it ->
-            Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
         }
         holder.apply {
             setItem(listener, currentItem)

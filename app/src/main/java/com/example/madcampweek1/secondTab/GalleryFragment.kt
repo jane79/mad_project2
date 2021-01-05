@@ -28,7 +28,7 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val adapter = GalleryAdapter(generateDummyImage(20))
+        val adapter = GalleryAdapter(generateDummyImage(40))
         view.gallery_recycler_view.adapter = adapter
 
         view.btnTakePhoto.setOnClickListener { openCamera() }
@@ -69,7 +69,7 @@ class GalleryFragment : Fragment() {
                         val filename = newFileName()
 
                         val uri = saveImageFile(bitmap, filename)
-                        Toast.makeText(activity, "saved: $uri", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "사진을 저장했습니다.", Toast.LENGTH_LONG).show()
                         imagePreview.setImageURI(uri)
                     }
                 }
@@ -121,7 +121,39 @@ class GalleryFragment : Fragment() {
                 5 -> R.drawable.cat5
                 6 -> R.drawable.cat6
                 7 -> R.drawable.cat7
-                else -> R.drawable.cat7
+                8 -> R.drawable.cat8
+                9 -> R.drawable.cat9
+                10 -> R.drawable.cat10
+                11 -> R.drawable.cat11
+                12 -> R.drawable.cat12
+                13 -> R.drawable.cat13
+                14 -> R.drawable.cat14
+                15 -> R.drawable.cat1
+                16 -> R.drawable.cat2
+                17 -> R.drawable.cat3
+                18 -> R.drawable.cat4
+                19 -> R.drawable.cat5
+                20 -> R.drawable.cat6
+                21 -> R.drawable.cat7
+                22 -> R.drawable.cat8
+                23 -> R.drawable.cat9
+                24 -> R.drawable.cat10
+                25 -> R.drawable.cat11
+                26 -> R.drawable.cat12
+                27 -> R.drawable.cat13
+                28 -> R.drawable.cat14
+                29 -> R.drawable.cat1
+                30 -> R.drawable.cat2
+                31 -> R.drawable.cat3
+                32 -> R.drawable.cat4
+                33 -> R.drawable.cat5
+                34 -> R.drawable.cat6
+                35 -> R.drawable.cat7
+                36 -> R.drawable.cat8
+                37 -> R.drawable.cat9
+                38 -> R.drawable.cat10
+                39 -> R.drawable.cat11
+                else -> R.drawable.cat12
             }
             val item = GalleryItem(drawable, "cat$i")
             list += item
