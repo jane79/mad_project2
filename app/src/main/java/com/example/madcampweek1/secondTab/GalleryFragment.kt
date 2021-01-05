@@ -5,14 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
@@ -25,7 +23,6 @@ class GalleryFragment : Fragment() {
     val FLAG_REQ_CAMERA = 101
     val FLAG_REQ_GALLERY = 102
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +33,7 @@ class GalleryFragment : Fragment() {
 
         view.btnTakePhoto.setOnClickListener { openCamera() }
         view.btnChoosePhoto.setOnClickListener { openGallery() }
+
         return view
     }
     private fun openCamera() {
@@ -47,11 +45,16 @@ class GalleryFragment : Fragment() {
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
         startActivityForResult(intent, FLAG_REQ_GALLERY)
     }
-    fun saveImageFile(bitmap: Bitmap, title:String) : Uri? {
-        val savedImageURL = MediaStore.Images.Media.insertImage(activity!!.contentResolver, bitmap, title, "image of $title")
+    private fun saveImageFile(bitmap: Bitmap, title: String) : Uri? {
+        val savedImageURL = MediaStore.Images.Media.insertImage(
+            activity!!.contentResolver,
+            bitmap,
+            title,
+            "image of $title"
+        )
         return Uri.parse(savedImageURL)
     }
-    fun newFileName() : String {
+    private fun newFileName() : String {
         val sdf = SimpleDateFormat("yyyyMMdd_HHmmss")
         val filename = sdf.format(System.currentTimeMillis())
         return filename
