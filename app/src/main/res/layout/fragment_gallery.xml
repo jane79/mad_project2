@@ -21,17 +21,19 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:background="@color/purple_500"
-            android:text="Take Photo" />
+            android:background="@drawable/my_btn"
+            android:textColor="@color/white"
+            android:text="사진 찍기"/>
 
         <Button
             android:id="@+id/btnChoosePhoto"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginHorizontal="5dp"
             android:layout_height="wrap_content"
-            android:background="@color/purple_700"
-            android:text="Choose Photo" />
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/my_btn"
+            android:textColor="@color/white"
+            android:text="앨범에서 찾기" />
 
     </LinearLayout>
 

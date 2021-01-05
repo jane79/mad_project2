@@ -36,7 +36,7 @@ class MainActivity : FragmentActivity() {
         // 권한처리 후 일반 프로세스(화면그리기, 데이터 가져오기) 시작
         setContentView(R.layout.activity_main)
         setAdapter()
-        val tabTitles = listOf<String>("PhoneBook", "Gallery", "Game")
+        val tabTitles = listOf<String>("연락처", "갤러리", "게임")
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
