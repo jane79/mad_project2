@@ -23,6 +23,7 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
 
             val intent = Intent(it.context, GalleryShowActivity::class.java)
             intent.putExtra("Drawable", currentItem.imageResource)
+
             it.context.startActivity(intent)
         }
         holder.apply {

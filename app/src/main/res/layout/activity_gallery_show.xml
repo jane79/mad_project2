@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/show_recycler"
             android:layout_width="70dp"

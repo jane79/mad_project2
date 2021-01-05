@@ -18,20 +18,15 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
-    // 권한처리는 MainActivity에서 한다
-
-    //    val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-//    val STORAGE_PERMISSION = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//    val FLAG_PERM_CAMERA = 98
-//    val FLAG_PERM_STORAGE = 99
-//    val FLAG_REQ_CAMERA = 101
+//    첫번째탭 관련 권한처리
     val READ_CONTACTS = Manifest.permission.READ_CONTACTS
     val CALL_PHONE = Manifest.permission.CALL_PHONE
-    val CAMERA = Manifest.permission.CAMERA
-    val READ_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
-    val WRITE_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
+//    두번째탭 관련 권한처리
+    val CAMERA_PERMISSION = Manifest.permission.CAMERA
+    val READ_STORAGE_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
+    val WRITE_STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
-    private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE, CAMERA, READ_STORAGE, WRITE_STORAGE)
+    private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE, CAMERA_PERMISSION, READ_STORAGE_PERMISSION, WRITE_STORAGE_PERMISSION)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -56,7 +51,8 @@ class MainActivity : FragmentActivity() {
     private fun checkAndStart() {
         if( isLower23() || isPermitted(permissions)) {
             startProcess()
-        } else {
+        }
+        else {
             ActivityCompat.requestPermissions(this, permissions, 99)
         }
     }
