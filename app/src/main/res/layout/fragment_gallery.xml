@@ -19,10 +19,6 @@
         android:layout_height="wrap_content"
         android:text="Choose Photo" />
 
-    <ImageView
-        android:id="@+id/imagePreview"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gallery_recycler_view"
