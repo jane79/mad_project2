@@ -26,6 +26,8 @@ class GameFragment : Fragment() {
     var player1point = 0
     var player2point = 0
 
+    var gametype = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -74,10 +76,32 @@ class GameFragment : Fragment() {
             resetBoard(view)
             player2point = 0
             player1point = 0
+            if(gametype == 0) {
+                view.text_view_p1.setText("User: " + player1point)
+                view.text_view_p2.setText("Computer: " + player2point)
+            } else {
+                view.text_view_p1.setText("Player 1: " + player1point)
+                view.text_view_p2.setText("Player 2: " + player2point)
+            }
+        }
+        val btnAI = view.findViewById<View>(R.id.button_AI) as Button
+        btnAI.setOnClickListener {
+            resetBoard(view)
+            player1point = 0
+            player2point = 0
+            gametype = 0
             view.text_view_p1.setText("User: " + player1point)
             view.text_view_p2.setText("Computer: " + player2point)
         }
-
+        val btnUser = view.findViewById<View>(R.id.button_Users) as Button
+        btnUser.setOnClickListener {
+            resetBoard(view)
+            player1point = 0
+            player2point = 0
+            gametype = 1
+            view.text_view_p1.setText("Player 1: " + player1point)
+            view.text_view_p2.setText("Player 2: " + player2point)
+        }
         return view
     }
 
@@ -112,10 +136,11 @@ class GameFragment : Fragment() {
 //                AutoPlay(view)
 //            }
 //        }, 1000)
-        if (activeplayer == 2) {
-            AutoPlay(view)
+        if(gametype == 0) {
+            if (activeplayer == 2) {
+                AutoPlay(view)
+            }
         }
-
     }
 
 
@@ -166,12 +191,14 @@ class GameFragment : Fragment() {
 
             if(winner == 1) {
                 player1point++
-                Toast.makeText(activity, "Player 1 won the game.", Toast.LENGTH_LONG).show()
+                if(gametype == 0) Toast.makeText(activity, "Player 1 won the game.", Toast.LENGTH_LONG).show()
+                else Toast.makeText(activity, "User won the game.", Toast.LENGTH_LONG).show()
                 updatePointsText(winner, view)
                 resetBoard(view);
             } else {
                 player2point++
-                Toast.makeText(activity, "Player 2 won the game.", Toast.LENGTH_LONG).show()
+                if(gametype == 0) Toast.makeText(activity, "Computer won the game.", Toast.LENGTH_LONG).show()
+                else Toast.makeText(activity, "Player 2 won the game.", Toast.LENGTH_LONG).show()
                 updatePointsText(winner, view)
                 resetBoard(view)
             }
@@ -183,9 +210,17 @@ class GameFragment : Fragment() {
 
     private fun updatePointsText(winner : Int, view: View) {
         if(winner == 1) {
-            view.text_view_p1.setText("User: " + player1point)
+            if(gametype == 0) {
+                view.text_view_p1.setText("User: " + player1point)
+            } else {
+                view.text_view_p1.setText("Player 1: " + player1point)
+            }
         } else {
-            view.text_view_p2.setText("Computer: " + player2point)
+            if(gametype == 0) {
+                view.text_view_p2.setText("Computer: " + player2point)
+            } else {
+                view.text_view_p2.setText("Player 2: " + player2point)
+            }
         }
     }
 
