@@ -8,6 +8,42 @@
     android:layout_margin="5dp"
     tools:context=".thirdTab.GameFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <Button
+            android:id="@+id/button_AI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:backgroundTint="#A05417"
+            android:text="1 player"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/button_Users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:text="2 players"
+            android:textStyle="bold"
+            android:backgroundTint="#A05417" />
+
+
+    </LinearLayout>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,12 +71,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="33dp"
-            android:layout_marginEnd="33dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:backgroundTint="#d2ac2d"
-            android:text="reset"
-            android:layout_marginRight="33dp"
-            android:layout_alignParentRight="true" />
+            android:text="reset" />
 
     </RelativeLayout>
 
