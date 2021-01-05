@@ -6,27 +6,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".secondTab.GalleryFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    <Button
-        android:id="@+id/btnTakePhoto"
+        android:layout_gravity="center"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/purple_500"
+            android:text="Take Photo" />
+
+        <Button
+            android:id="@+id/btnChoosePhoto"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_700"
+            android:text="Choose Photo" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take Photo" />
+        android:orientation="vertical"
+        android:background="@color/cardview_shadow_start_color">
 
-    <Button
-        android:id="@+id/btnChoosePhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose Photo" />
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"/>
 
-    <ImageView
-        android:id="@+id/imagePreview"
-        android:layout_marginTop="2dp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"/>
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gallery_recycler_view"

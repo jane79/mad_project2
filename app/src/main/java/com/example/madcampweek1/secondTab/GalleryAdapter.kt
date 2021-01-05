@@ -10,6 +10,7 @@ import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
 class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.gallery_item,
             parent, false)
@@ -17,7 +18,6 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
     }
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val currentItem = galleryList[position]
-
         val listener = View.OnClickListener { it ->
             Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
 
@@ -31,6 +31,7 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
             itemView.tag = currentItem
         }
     }
+
     override fun getItemCount() = galleryList.size
 
     class GalleryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

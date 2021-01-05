@@ -27,7 +27,6 @@ class PhoneAdapter(private val list: List<Phone>) : RecyclerView.Adapter<PhoneAd
         val listener = View.OnClickListener { it ->
             Toast.makeText(it.context, "clicked: ${phone.name}, ${phone.phone}", Toast.LENGTH_SHORT).show()
             val intent = Intent(it.context, PhoneBookShowActivity::class.java)
-
             intent.putExtra("ProfileImage", R.drawable.ic_human)
 //          여기서 잠깐 프로필사진에 컬러필터 뭐 씌울지 저장
             var num = 0

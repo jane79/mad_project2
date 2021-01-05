@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_phone_book.view.*
 
 class PhoneBookFragment : Fragment() {
 
-    lateinit var mAadapter: PhoneAdapter
+    lateinit var mAdapter: PhoneAdapter
     var phonelist = mutableListOf<Phone>()
     var searchText = ""
     var sortText = "asc"
@@ -29,10 +29,11 @@ class PhoneBookFragment : Fragment() {
         setRadioListener(view)
         return view
     }
+
     private fun setContentView(view: View){
         phonelist.addAll(getPhoneNumbers(sortText, searchText))
-        mAadapter = PhoneAdapter(phonelist)
-        view.recycler.adapter = mAadapter
+        mAdapter = PhoneAdapter(phonelist)
+        view.recycler.adapter = mAdapter
         view.recycler.layoutManager = LinearLayoutManager(context)
     }
     private fun setSearchListener(view: View) {
@@ -61,7 +62,7 @@ class PhoneBookFragment : Fragment() {
         val newList = getPhoneNumbers(sortText, searchText)
         this.phonelist.clear()
         this.phonelist.addAll(newList)
-        this.mAadapter.notifyDataSetChanged()
+        this.mAdapter.notifyDataSetChanged()
     }
 
     fun getPhoneNumbers(sort:String, searchName:String?) : List<Phone> {
