@@ -110,7 +110,7 @@ class GameFragment : Fragment() {
 
         if (activeplayer == 1) {
             buSelected.text = "X"
-            buSelected.setBackgroundColor(Color.parseColor("#009193"))
+            buSelected.setBackgroundColor(Color.parseColor("#92CDED")) // @color/sky_blue
             player1.add(cellID)
             activeplayer = 2
 
@@ -121,7 +121,7 @@ class GameFragment : Fragment() {
         } else {
 
             buSelected.text = "O"
-            buSelected.setBackgroundColor(Color.parseColor("#FF9300"))
+            buSelected.setBackgroundColor(Color.parseColor("#F1C400")) // @color/sun_flower
             player2.add(cellID)
             activeplayer = 1
 
