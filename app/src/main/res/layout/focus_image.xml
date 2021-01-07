@@ -4,16 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="345dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:mipmap/sym_def_app_icon"
-        tools:layout_editor_absoluteY="174dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/show_recycler"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/image_show_item" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:mipmap/sym_def_app_icon"
+            tools:layout_editor_absoluteY="174dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

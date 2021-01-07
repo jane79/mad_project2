@@ -76,6 +76,13 @@ class GalleryAdapter(val context: Context?, private val datasetList : MutableLis
                     val bundle = Bundle()
                     bundle.putString("uri", item.contentUri.toString())
                     intent.putExtras(bundle)    // intent 객체에 Bundle을 저장
+
+                    val stringedUri : MutableList<String> = arrayListOf<String>()
+                    for(v in datasetList){
+                        stringedUri.add(v.contentUri.toString())
+                    }
+
+                    intent.putExtra("imagelist", ArrayList(stringedUri))
                     ActivityCompat.startActivityForResult(context as Activity, intent, 1, bundle)
                 }
                 //val intent = Intent(context, ImageActivity)
