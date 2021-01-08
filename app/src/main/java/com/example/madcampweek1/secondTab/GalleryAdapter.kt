@@ -20,7 +20,7 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
         val currentItem = galleryList[position]
         val listener = View.OnClickListener { it ->
             val intent = Intent(it.context, GalleryShowActivity::class.java)
-            intent.putExtra("Drawable", currentItem.imageResource)
+            intent.putExtra("Uri", currentItem.imageResource.toString())
             it.context.startActivity(intent)
         }
         holder.apply {
@@ -34,8 +34,9 @@ class GalleryAdapter(private val galleryList: ArrayList<GalleryItem>) : Recycler
     class GalleryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var view: View = itemView
         fun bind(listener: View.OnClickListener, item: GalleryItem){
-            view.thumbnail.setImageResource(item.imageResource)
+            view.thumbnail.setImageURI(item.imageResource)
             view.setOnClickListener(listener)
         }
     }
+
 }

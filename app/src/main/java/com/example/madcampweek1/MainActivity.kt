@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.madcampweek1.firstTab.PhoneBookFragment
+import com.example.madcampweek1.secondTab.GalleryAdapter
 import com.example.madcampweek1.secondTab.GalleryFragment
 import com.example.madcampweek1.thirdTab.GameFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_gallery.view.*
 
 class MainActivity : FragmentActivity() {
 //    첫번째탭 관련 권한처리
@@ -27,6 +30,8 @@ class MainActivity : FragmentActivity() {
     val WRITE_STORAGE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
     private val permissions = arrayOf(READ_CONTACTS, CALL_PHONE, CAMERA_PERMISSION, READ_STORAGE_PERMISSION, WRITE_STORAGE_PERMISSION)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -90,6 +95,19 @@ class MainActivity : FragmentActivity() {
             }
         }
     }
+
+    var lastTimeBackPressed : Long = -1;
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() - lastTimeBackPressed < 2000){
+            finish()
+            return
+        }
+        Snackbar.make(viewPager, "뒤로가기 버튼을 한번 더 눌러 종료", Snackbar.LENGTH_LONG)
+            .setAction("Action", null)
+            .show()
+        lastTimeBackPressed = System.currentTimeMillis();
+    }
+
 }
 class FragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     val fragments = mutableListOf<Fragment>()

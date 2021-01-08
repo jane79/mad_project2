@@ -26,15 +26,12 @@ class GalleryShowAdapter(private val galleryShowList: ArrayList<GalleryItem>) : 
     override fun onBindViewHolder(holder: GalleryShowViewHolder, position: Int) {
         val currentItem = galleryShowList[position]
 
-//        holder.setItem(currentItem)
         val listener = View.OnClickListener { it ->
-//            Toast.makeText(it.context, "Clicked: ${currentItem.title}", Toast.LENGTH_SHORT).show()
         }
         holder.apply {
             setItem(listener, currentItem)
             itemView.tag = currentItem
         }
-
         if(itemClick != null) {
             holder?.itemView?.setOnClickListener { v ->
                 itemClick?.onClick(v, currentItem)
@@ -47,7 +44,7 @@ class GalleryShowAdapter(private val galleryShowList: ArrayList<GalleryItem>) : 
     class GalleryShowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setItem(listener: View.OnClickListener, item: GalleryItem) {
-            itemView.show_view.setImageResource(item.imageResource)
+            itemView.show_view.setImageURI(item.imageResource)
             itemView.setOnClickListener(listener)
         }
     }

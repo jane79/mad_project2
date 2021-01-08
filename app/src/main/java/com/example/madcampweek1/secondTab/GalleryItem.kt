@@ -1,3 +1,5 @@
 package com.example.madcampweek1.secondTab
 
-data class GalleryItem(val imageResource: Int, val title: String)
+import android.net.Uri
+
+data class GalleryItem(val imageResource: Uri, val title: String)

@@ -1,6 +1,8 @@
 package com.example.madcampweek1.secondTab
 
+import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,40 +13,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.madcampweek1.R
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.fragment_gallery.view.*
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GalleryFragment : Fragment() {
     val FLAG_PERM_CAMERA = 98
-    val FLAG_PERM_STORAGE = 99
     val FLAG_REQ_CAMERA = 101
-    val FLAG_REQ_GALLERY = 102
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_gallery, container, false)
-        val adapter = GalleryAdapter(generateDummyImage(40))
+        var adapter = GalleryAdapter(getFileList(requireContext(), MediaStoreFileType.IMAGE))
         view.gallery_recycler_view.adapter = adapter
-
-        view.btnTakePhoto.setOnClickListener { openCamera() }
-        view.btnChoosePhoto.setOnClickListener { openGallery() }
 
         return view
     }
+
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, FLAG_REQ_CAMERA)
     }
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = MediaStore.Images.Media.CONTENT_TYPE
-        startActivityForResult(intent, FLAG_REQ_GALLERY)
-    }
+
     private fun saveImageFile(bitmap: Bitmap, title: String) : Uri? {
         val savedImageURL = MediaStore.Images.Media.insertImage(
             activity!!.contentResolver,
@@ -60,7 +60,6 @@ class GalleryFragment : Fragment() {
         return filename
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
                 FLAG_REQ_CAMERA -> {
@@ -70,12 +69,8 @@ class GalleryFragment : Fragment() {
 
                         val uri = saveImageFile(bitmap, filename)
                         Toast.makeText(activity, "사진을 저장했습니다.", Toast.LENGTH_LONG).show()
-                        imagePreview.setImageURI(uri)
+                        //imagePreview.setImageURI(uri)
                     }
-                }
-                FLAG_REQ_GALLERY -> {
-                    val uri = data?.data
-                    imagePreview.setImageURI(uri)
                 }
             }
         }
@@ -85,7 +80,6 @@ class GalleryFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
             FLAG_PERM_CAMERA -> {
                 var checked = true
@@ -97,67 +91,60 @@ class GalleryFragment : Fragment() {
                 }
                 if (checked) { openCamera() }
             }
-            FLAG_PERM_STORAGE -> {
-                var checked = true
-                for (grant in grantResults) {
-                    if (grant != PackageManager.PERMISSION_GRANTED) {
-                        checked = false
-                        break
-                    }
-                }
-                if (checked) { openGallery() }
-            }
         }
     }
 
-    private fun generateDummyImage(size: Int): ArrayList<GalleryItem> {
-        val list = ArrayList<GalleryItem>()
-        for (i in 1 until size) {
-            val drawable = when (i) {
-                1 -> R.drawable.cat1
-                2 -> R.drawable.cat2
-                3 -> R.drawable.cat3
-                4 -> R.drawable.cat4
-                5 -> R.drawable.cat5
-                6 -> R.drawable.cat6
-                7 -> R.drawable.cat7
-                8 -> R.drawable.cat8
-                9 -> R.drawable.cat9
-                10 -> R.drawable.cat10
-                11 -> R.drawable.cat11
-                12 -> R.drawable.cat12
-                13 -> R.drawable.cat13
-                14 -> R.drawable.cat14
-                15 -> R.drawable.cat1
-                16 -> R.drawable.cat2
-                17 -> R.drawable.cat3
-                18 -> R.drawable.cat4
-                19 -> R.drawable.cat5
-                20 -> R.drawable.cat6
-                21 -> R.drawable.cat7
-                22 -> R.drawable.cat8
-                23 -> R.drawable.cat9
-                24 -> R.drawable.cat10
-                25 -> R.drawable.cat11
-                26 -> R.drawable.cat12
-                27 -> R.drawable.cat13
-                28 -> R.drawable.cat14
-                29 -> R.drawable.cat1
-                30 -> R.drawable.cat2
-                31 -> R.drawable.cat3
-                32 -> R.drawable.cat4
-                33 -> R.drawable.cat5
-                34 -> R.drawable.cat6
-                35 -> R.drawable.cat7
-                36 -> R.drawable.cat8
-                37 -> R.drawable.cat9
-                38 -> R.drawable.cat10
-                39 -> R.drawable.cat11
-                else -> R.drawable.cat12
+    private fun getFileList(context: Context, type: MediaStoreFileType): ArrayList<GalleryItem> {
+        val imageList = ArrayList<GalleryItem>()
+        val projection = arrayOf(
+            MediaStore.Files.FileColumns._ID,
+            MediaStore.Files.FileColumns.DISPLAY_NAME,
+            MediaStore.Files.FileColumns.DATE_TAKEN,
+            MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME,
+            MediaStore.Files.FileColumns.BUCKET_ID
+        )
+        val sortOrder = "${MediaStore.Files.FileColumns.DATE_TAKEN} DESC"
+        val cursor = context.contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            projection,
+            null,
+            null,
+            sortOrder
+        )
+
+        cursor?.use {
+            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
+            val dateTakenColumn =
+                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATE_TAKEN)
+            val displayNameColumn =
+                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME)
+            val bucketIDColumn =
+                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.BUCKET_ID)
+            val bucketNameColumn =
+                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME)
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(idColumn)
+                val dateTaken = Date(cursor.getLong(dateTakenColumn))
+                val displayName = cursor.getString(displayNameColumn)
+                val contentUri = Uri.withAppendedPath(
+                    type.externalContentUri,
+                    id.toString()
+                )
+                val bucketID = cursor.getLong(bucketIDColumn)
+                val bucketName = cursor.getString(bucketNameColumn)
+                imageList.add(GalleryItem(contentUri, "image"))
             }
-            val item = GalleryItem(drawable, "cat$i")
-            list += item
         }
-        return list
+        return imageList
     }
+
+    enum class MediaStoreFileType(
+        val externalContentUri: Uri,
+        val mimeType: String,
+        val pathByDCIM: String
+    ) {
+        IMAGE(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*", "/image"),
+    }
+
+
 }
