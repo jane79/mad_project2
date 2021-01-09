@@ -39,13 +39,47 @@
     android:layout_marginTop="5dp"
     android:textColor="@color/wet_asphalt" />
 
-    <ImageButton
-    android:id="@+id/phone_show_phone_btn"
-    android:layout_width="55dp"
-    android:layout_height="45dp"
-    android:layout_gravity="center_horizontal"
-    android:background="@drawable/phone_call_btn"
-    android:layout_marginTop="15dp"
-    android:src="@drawable/ic_call" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:id="@+id/phone_show_phone_btn"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_call"
+            android:layout_marginLeft="90dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/phone_show_upload"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_upload"
+            android:layout_margin="50dp"
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            android:id="@+id/phone_show_delete"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_delete"
+            android:layout_marginRight="90dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
 </LinearLayout>
 
