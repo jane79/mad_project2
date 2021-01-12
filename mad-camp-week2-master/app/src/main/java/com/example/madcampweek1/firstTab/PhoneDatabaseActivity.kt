@@ -29,9 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PhoneDatabaseActivity : AppCompatActivity() {
 
     lateinit var mAdapter: PhoneDatabaseAdapter
-    var dblist = mutableListOf<Phone>()
-
-    var ArrayphoneInf:Array<PhoneInf>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +57,10 @@ class PhoneDatabaseActivity : AppCompatActivity() {
                     call: Call<Array<PhoneInf>>,
                     response: Response<Array<PhoneInf>>
                 ) {
+                    var dblist = mutableListOf<Phone>()
+                    var ArrayphoneInf:Array<PhoneInf>? = null
+
+
                     ArrayphoneInf = response.body()
                     var i = 0
                     val len = ArrayphoneInf?.size

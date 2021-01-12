@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MadCampWeek1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".firstTab.PhoneDbShowActivity"></activity>
+        <activity android:name=".thirdTab.ScheduleLoadActivity"></activity>
+        <activity android:name=".thirdTab.editActivity" />
+        <activity android:name=".firstTab.PhoneDbShowActivity" />
         <activity
             android:name=".firstTab.PhoneDatabaseActivity"
             android:label="@string/title_activity_phone_database"
@@ -28,6 +30,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

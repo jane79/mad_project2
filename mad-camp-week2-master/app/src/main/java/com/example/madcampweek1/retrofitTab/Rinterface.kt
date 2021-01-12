@@ -44,3 +44,20 @@ interface GalleryService {
     ) : Call<ImageInf>         // output, Login이라는 output
 
 }
+
+interface ScheduleService {
+
+    @FormUrlEncoded
+    @POST("/schedule/upload")
+    fun scheduleUpload(
+        @Field("name") name:String,     // input
+        @Field("file") file:String
+    ) : Call<ScheduleInf>         // output, Login이라는 output
+
+    @FormUrlEncoded
+    @POST("/schedule/download/all")
+    fun scheduleDownloadAll(
+        @Field("name") name:String  // input
+    ) : Call<Array<ScheduleInf>>         // output, Login이라는 output
+
+}
